@@ -1,0 +1,14 @@
+FROM ubuntu:22.04
+
+RUN apt-get update && \
+  apt-get install -y ansible sshpass openssh-client && \
+  useradd -m ansible && \
+  echo "ansible:ansible" | chpasswd
+
+USER ansible
+WORKDIR /home/ansible
+
+COPY . .
+
+CMD ["sleep","infinity"]
+
